@@ -1,0 +1,16 @@
+<div class="container-chat">
+  <div class="converse"> 
+    <div *ngFor="let message of messages">
+      <div [ngClass]="{'user-message talk-bubble tri-right round right-in': message.from === chatMessageFrom.CHAT_MESSAGE_FROM_USER, 'bot-message': message.from != chatMessageFrom.CHAT_MESSAGE_FROM_USER}">
+        <p class="message">
+          {{message.message}}
+        </p>
+        
+      </div>
+    </div>
+  </div>
+  <div class="container-ask">
+    <textarea  #userQuestion name="ask"  ></textarea>
+    <button type="button" class="btn btn-primary" (click)="addMessage(userQuestion.value, chatMessageFrom.CHAT_MESSAGE_FROM_USER);userQuestion.value =''">Ask</button>
+  </div>
+</div>
