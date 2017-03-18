@@ -15,7 +15,10 @@ router.get('/', function (req, res, next) {
  * Interactive action with chat bot
  */
 const actions = {
-  send(request, response) { 
+
+  send(request, response) {
+    let ctx = request.context;
+    setContext(sessionId, ctx);
     return Promise.resolve();
   },
   // You should implement your custom actions here
@@ -49,21 +52,22 @@ function setContext(sessionId, ctx) {
  * Ask question to chat bot
  */
 router.post('/', function (req, res, next) {
-  let sessionId = uuidV4();
+
   let text = req.body.ask;
-  let sessionId = uuidV4();
+  let sessionId = new Date().getTime() + uuidV4();
 
   if (text) {
+    console.log(text);
     wit.converse(sessionId,text, {})
     .then((data) => {
-      return res.status(200).json({msg:data.msg, richMedia: data.entities.intent});
+      return res.status(200).json({message: data.msg, type: data.entities.intent[0].value});
     })
     .catch((err) => {
-        return res.status(500).send('Oops! Got an error from Wit: ' + err.stack || err);
+        return res.json({message: 'Sorry, I did\'nt understand your question'});
       })
 
   } else {
-    return res.send('Ask me something');
+    return res.json({message: 'Sorry, I did\'nt understand your question'});
   }
 });
 

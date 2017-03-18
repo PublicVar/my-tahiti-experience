@@ -1,0 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+h1{
+    font-family: 'Tangerine', cursive;
+    font-size:3em;
+}
+ div{
+    
+    font-size: 1.1em;
+    line-height: 2em;
+    background-color: #FFF;
+    padding: 20px;
+}
+p{
+    font-size: 1.1em;
+    line-height: 2em;
+}
+.video-full-size{
+    padding: 0;
+}
+.video-full-size video{
+    width: 100% !important;
+    height: auto !important;
+    padding: 0;
+
+}
+.bg-flower{
+    background: url(assets/img/fleur-30.png) no-repeat right bottom;
+}
