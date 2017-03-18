@@ -60,12 +60,14 @@ router.post('/', function (req, res, next) {
   let sessionId = new Date().getTime() + uuidV4();
 
   if (text) {
-    wit.converse(sessionId,text, {}, true)
+    console.log(text);
+    wit.converse(sessionId,text, {})
     .then((data) => {
-      return res.status(200).json({message: data.msg, richMedia: data.entities.intent.value});
+
+      return res.status(200).json({message: data.msg, type: data.entities.intent[0].value});
     })
     .catch((err) => {
-        return res.status(500).json({message: 'Oops! Got an error from Wit: ' + err.stack || err});
+        return res.json({message: 'Sorry, I did\'nt understand your question'});
       })
 
   } else {
