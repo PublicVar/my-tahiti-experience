@@ -16,7 +16,8 @@ router.get('/', function (req, res, next) {
  */
 const actions = {
   send(request, response) {
-    console.log('send')
+    let ctx = request.context;
+    setContext(sessionId, ctx);
    
     return Promise.resolve();
   },
@@ -56,19 +57,19 @@ function setContext(sessionId, ctx) {
  */
 router.post('/', function (req, res, next) {
   let text = req.body.ask;
-  let sessionId = uuidV4();
+  let sessionId = new Date().getTime() + uuidV4();
 
   if (text) {
-    wit.converse(sessionId,text, {})
+    wit.converse(sessionId,text, {}, true)
     .then((data) => {
-      return res.status(200).json(data.msg);
+      return res.status(200).json({message: data.msg, richMedia: data.entities.intent.value});
     })
     .catch((err) => {
-        return res.status(500).send('Oops! Got an error from Wit: ' + err.stack || err);
+        return res.status(500).json({message: 'Oops! Got an error from Wit: ' + err.stack || err});
       })
 
   } else {
-    return res.send('Ask me something');
+    return res.json({message: 'Sorry, I did\'nt understand your question'});
   }
 });
 
