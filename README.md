@@ -1,10 +1,11 @@
 # Chat Bot: Hackathon Air Tahiti Nui
 
-# Languages 
+# Techno 
 
 * HTML
 * CSS
 * Javascript (NodeJS)
+* Wit.ai
 
 # Use
 
