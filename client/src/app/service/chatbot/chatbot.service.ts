@@ -17,11 +17,11 @@ export class ChatbotService {
     return this.http.post(this.chatBotUrl, JSON.stringify({ask: question}), options)
       .toPromise()
       .then(response => {
-    
         return <ChatMessage>{
           message: response.json().message,
           from: ChatMessageFrom.CHAT_MESSAGE_FROM_BOT,
-          createdAt: new Date()
+          createdAt: new Date(),
+          type: response.json().type
         }
       })
       .catch(this.handleError)

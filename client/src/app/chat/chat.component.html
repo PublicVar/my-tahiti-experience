@@ -1,16 +1,18 @@
 <div class="container-chat">
-  <div class="converse"> 
+  <div class="sidebar-before"></div>
+  <div class="converse" angular2-auto-scroll observe-attributes> 
     <div *ngFor="let message of messages">
       <div [ngClass]="{'user-message talk-bubble tri-right round right-in': message.from === chatMessageFrom.CHAT_MESSAGE_FROM_USER, 'bot-message': message.from != chatMessageFrom.CHAT_MESSAGE_FROM_USER}">
-        <p class="message">
+        <div *ngIf="message.from != chatMessageFrom.CHAT_MESSAGE_FROM_USER" class="sender-bot">Tahiti experience :</div>
+        <div *ngIf="message.from === chatMessageFrom.CHAT_MESSAGE_FROM_USER" class="sender-user">You :</div>
+        <div class="message">
           {{message.message}}
-        </p>
-        
+        </div>
       </div>
     </div>
   </div>
-  <div class="container-ask">
-    <textarea  #userQuestion name="ask"  ></textarea>
-    <button type="button" class="btn btn-primary" (click)="addMessage(userQuestion.value, chatMessageFrom.CHAT_MESSAGE_FROM_USER);userQuestion.value =''">Ask</button>
+  <div class="container-ask row">
+    <textarea class="col-xs-12 col-md-10 transparent-input"  #userQuestion name="ask" placeholder="Ask your question here..." (keyup.enter)="addMessage(userQuestion.value, chatMessageFrom.CHAT_MESSAGE_FROM_USER);userQuestion.value =''"></textarea>
+    <button class="col-xs-12 col-md-2"   type="button" class="btn btn-primary" (click)="addMessage(userQuestion.value, chatMessageFrom.CHAT_MESSAGE_FROM_USER);userQuestion.value =''">Ask</button>
   </div>
 </div>

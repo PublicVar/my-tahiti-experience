@@ -3,7 +3,7 @@
 }
 .sidebar{
     position: fixed;
-    top: 51px;
+    top: 0;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -11,6 +11,15 @@
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #00c0d6;
+
+    background : url(/assets/img/bg-blue.png);
     border-right: 1px solid #eee;
+}
+
+.main{
+    padding-top: 50px;
+   
+}
+.no-gutter-left{
+    margin-left: 0;
 }
