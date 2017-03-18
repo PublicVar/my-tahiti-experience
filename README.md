@@ -25,3 +25,7 @@ Test at : http://localhost:4200
 **Note**:
 
 For the moment, there is only some basics questions. Questions customers used to ask.
+
+Question for testing : 
+* What can I do there
+* How can I come
