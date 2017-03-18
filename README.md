@@ -19,3 +19,9 @@ Start server :
 ```
 node bin/www
 ```
+
+Test at : http://localhost:4200
+
+**Note**:
+
+For the moment, there is only some basics questions. Questions customers used to ask.
